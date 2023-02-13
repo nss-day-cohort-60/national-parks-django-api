@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from .NaturalAttraction import NaturalAttraction
 from .ParkNaturalAttraction import ParkNaturalAttraction
 from .ParkWildlife import ParkWildlife
