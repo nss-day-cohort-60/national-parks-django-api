@@ -1,0 +1,65 @@
+[
+    {
+        "model": "auth.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$216000$6DvfW8IvGfm7$YObrlCpA+mkWbNsfw+sqr1/4k+Wh3qgN9XvBh/Ge+oA=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "Frodo",
+            "first_name": "Frodo",
+            "last_name": "Baggins",
+            "email": "frodo@baggins.com",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2023-02-13T00:00:00Z"
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 2,
+        "fields": {
+            "password": "pbkdf2_sha256$216000$seMRODEfzPmZ$JbZhIV1XmJRn7V0WfEa+Sa7eJ6Oyvj0ss/FW0XvD+zo=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "Bilbo",
+            "first_name": "Bilbo",
+            "last_name": "Baggins",
+            "email": "bilbo@baggins.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-02-13T00:00:00Z"
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 3,
+        "fields": {
+            "password": "pbkdf2_sha256$216000$quGyt8uVhJkp$+5u9X5F5WxuPQ5O24zNf7VHdMtbuUG7GmZ+5u5Xnc/4=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "Thorin",
+            "first_name": "Thorin",
+            "last_name": "Oakenshield",
+            "email": "thorin@oakenshield.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-02-13T00:00:00Z"
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 4,
+        "fields": {
+            "password": "pbkdf2_sha256$216000$rdUW8bUfZ6zq$GJpT6xWn+bfCGBMP+hE2b9XHJzzW8ziVZJzYQR+Pev0=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "Aragorn",
+            "first_name": "Aragorn",
+            "last_name": "Elessar",
+            "email": "aragorn@elessar.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-02-13T00:00:00Z"
+        }
+    }]
