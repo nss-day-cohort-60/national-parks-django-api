@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from .NaturalAttraction import NaturalAttraction
+from .campground import Campground
 from .ParkNaturalAttraction import ParkNaturalAttraction
 from .ParkWildlife import ParkWildlife
 from .blog import Blog
@@ -13,3 +14,6 @@ from .amenity import Amenity
 from .park_amenity import ParkAmenity
 from .wildlife_group import WildlifeGroup
 from .wildlife import Wildlife
+from .event import Event
+from .camping_reservation import CampingReservation
+from .event_registration import EventRegistration
