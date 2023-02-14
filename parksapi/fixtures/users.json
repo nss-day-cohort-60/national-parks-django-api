@@ -5,12 +5,12 @@
         "fields": {
             "password": "pbkdf2_sha256$216000$6DvfW8IvGfm7$YObrlCpA+mkWbNsfw+sqr1/4k+Wh3qgN9XvBh/Ge+oA=",
             "last_login": null,
-            "is_superuser": true,
+            "is_superuser": false,
             "username": "Frodo",
             "first_name": "Frodo",
             "last_name": "Baggins",
             "email": "frodo@baggins.com",
-            "is_staff": true,
+            "is_staff": false,
             "is_active": true,
             "date_joined": "2023-02-13T00:00:00Z"
         }
@@ -62,4 +62,117 @@
             "is_active": true,
             "date_joined": "2023-02-13T00:00:00Z"
         }
-    }]
+    },
+    {
+        "model": "auth.user",
+        "pk": 5,
+        "fields": {
+            "password": "pbkdf2_sha256$216000$HvzDcZew8OZg$X9lcnm/a1EVTc8xGmUnQjKm0A6ZbKsNYsPUVQ2X9uFA=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "Gandalf",
+            "first_name": "Gandalf",
+            "last_name": "the Grey",
+            "email": "gandalf@grey.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-02-14T00:00:00Z"
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 6,
+        "fields": {
+            "password": "pbkdf2_sha256$216000$qxDR+pg2wKjI$B5QZG5i5jKf5YXr78vC3qBpawtBfKjKLl+szIMrFGOg=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "Legolas",
+            "first_name": "Legolas",
+            "last_name": "Greenleaf",
+            "email": "legolas@greenleaf.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-02-14T00:00:00Z"
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 7,
+        "fields": {
+            "password": "pbkdf2_sha256$216000$x4Th4wRjKZ99$Ap6kh5UQY5/NKj5FXTdX3PbCv6kOcOJdHlkK56/x7nc=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "Gimli",
+            "first_name": "Gimli",
+            "last_name": "son of Gloin",
+            "email": "gimli@gloin.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-02-14T00:00:00Z"
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 8,
+        "fields": {
+            "password": "pbkdf2_sha256$216000$sgXyJg+53DjC$b2QgDekwq3FqNp18GnW8ATRyaRg9f1wdvSmnTfW1TtE=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "Eowyn",
+            "first_name": "Eowyn",
+            "last_name": "of Rohan",
+            "email": "eowyn@rohan.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-02-14T00:00:00Z"
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 9,
+        "fields": {
+            "password": "pbkdf2_sha256$216000$VssdCtBzSRV7$qo8bqWV1vHgM84/WR51xsz8y2WVhbmMkjP76gLMrGz8=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "GandalftheGreat",
+            "first_name": "Gandalf",
+            "last_name": "Gandalfo Senior",
+            "email": "gandalfsenior@thegrey.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-02-14T00:00:00Z"
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 10,
+        "fields": {
+            "password": "pbkdf2_sha256$216000$KnGxLMtnoW8M$57jK2SWtQzHw7qW8bYjV7H9L/hnLc51jQnNWvEyySOo=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "LegolastheGreat",
+            "first_name": "Legolas",
+            "last_name": "Greenleaf Senior",
+            "email": "legolasthegreat@greenleaf.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-02-14T00:00:00Z"
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 11,
+        "fields": {
+            "password": "pbkdf2_sha256$216000$u0dDpX7rPFDv$5V7jK2Mk+fwox/Hc+Wt8LCCgmzFZ9GX2vrHATY1Klqw=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "SmokyBear",
+            "first_name": "Smoky",
+            "last_name": "Bear",
+            "email": "forestprotector@smokybear.com",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2023-02-14T00:00:00Z"
+        }
+    }
+]
