@@ -14,16 +14,22 @@ class WildlifeView(ViewSet):
         Returns:
             Response -- JSON serialized list of wildlife
         """
+        if "park_id" in request.query_params:
+            try:
+                park_wildlife = ParkWildlife.objects.all()
+                filtered = park_wildlife.filter(
+                    park_id=request.query_params.get('park_id'))
+                assert len(filtered) > 0
+            except AssertionError:
+                return Response({'message': 'Invalid park id'}, status=status.HTTP_404_NOT_FOUND)
+            serializer = ParkWildlifeSerializer(filtered, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
         try:
             all_wildlife = Wildlife.objects.all()
-            park_wildlife = ParkWildlife.objects.all()
-            if "park_id" in request.query_params:
-                filtered = park_wildlife.filter(
-                    park_id=request.query_params.get('park_id', None))
-                serializer = ParkWildlifeSerializer(filtered, many=True)
-                return Response(serializer.data, status=status.HTTP_200_OK)
+
         except Wildlife.DoesNotExist:
-            return Response({'message': 'You sent an invalid park ID'}, status=status.HTTP_404_NOT_FOUND)
+            return Response({'message': 'You sent an invalid song ID'}, status=status.HTTP_404_NOT_FOUND)
         serializer = WildlifeSerializer(all_wildlife, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -56,4 +62,4 @@ class ParkWildlifeSerializer(serializers.ModelSerializer):
     class Meta:
         model = ParkWildlife
         fields = ('wildlife',)
-        depth=1
+        depth = 1
