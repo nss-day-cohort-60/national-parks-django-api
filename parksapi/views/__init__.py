@@ -1,2 +1,2 @@
 from .wildlife_view import WildlifeView
-from .park import ParkView
+from .park_view import ParkView
