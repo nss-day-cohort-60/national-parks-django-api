@@ -20,7 +20,8 @@ class WildlifeView(ViewSet):
                 all_wildlife = all_wildlife.filter(park_id=request.query_params['park_id'])
                 return Response({'message': 'You sent an invalid park ID'}, status=status.HTTP_404_NOT_FOUND)
         except Wildlife.DoesNotExist:
-            serializer = WildlifeSerializer(all_wildlife, many=True)
+            return Response({'message': 'You sent an invalid song ID'}, status=status.HTTP_404_NOT_FOUND)
+        serializer = WildlifeSerializer(all_wildlife, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def retrieve(self, request, pk):
@@ -36,10 +37,11 @@ class WildlifeView(ViewSet):
         serializer = WildlifeSerializer(wildlife)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-    
+
 class WildlifeSerializer(serializers.ModelSerializer):
     """JSON serializer for wildlife
     """
     class Meta:
         model = Wildlife
         fields = ('id', 'name', 'information', 'wildlife_group', 'image')
+        depth=1
