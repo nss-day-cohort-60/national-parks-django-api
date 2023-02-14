@@ -2,7 +2,7 @@ from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
-from parksapi.models import Wildlife, Park
+from parksapi.models import Wildlife, ParkWildlife
 
 
 class WildlifeView(ViewSet):
@@ -16,11 +16,14 @@ class WildlifeView(ViewSet):
         """
         try:
             all_wildlife = Wildlife.objects.all()
+            park_wildlife = ParkWildlife.objects.all()
             if "park_id" in request.query_params:
-                all_wildlife = all_wildlife.filter(park_id=request.query_params['park_id'])
-                return Response({'message': 'You sent an invalid park ID'}, status=status.HTTP_404_NOT_FOUND)
+                filtered = park_wildlife.filter(
+                    park_id=request.query_params.get('park_id', None))
+                serializer = ParkWildlifeSerializer(filtered, many=True)
+                return Response(serializer.data, status=status.HTTP_200_OK)
         except Wildlife.DoesNotExist:
-            return Response({'message': 'You sent an invalid song ID'}, status=status.HTTP_404_NOT_FOUND)
+            return Response({'message': 'You sent an invalid park ID'}, status=status.HTTP_404_NOT_FOUND)
         serializer = WildlifeSerializer(all_wildlife, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -44,4 +47,13 @@ class WildlifeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Wildlife
         fields = ('id', 'name', 'information', 'wildlife_group', 'image')
+        depth = 1
+
+
+class ParkWildlifeSerializer(serializers.ModelSerializer):
+    """JSON serializer for parkwildlife
+    """
+    class Meta:
+        model = ParkWildlife
+        fields = ('wildlife',)
         depth=1
