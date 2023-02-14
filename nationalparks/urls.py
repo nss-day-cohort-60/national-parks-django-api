@@ -1,13 +1,10 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 from rest_framework import routers
-from django.conf.urls import include
-from parksapi.views import WildlifeView
-
+from parksapi.views import ParkView
 
 router = routers.DefaultRouter(trailing_slash=False)
-router.register(r'wildlife', WildlifeView, 'wildlife')
-
+router.register(r'parks', ParkView, 'park')
 
 urlpatterns = [
     path('', include(router.urls)),
