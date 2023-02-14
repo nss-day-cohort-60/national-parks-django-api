@@ -16,10 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers
-from parksapi.views import ParkView
+from parksapi.views import ParkView, PhotoView
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'parks', ParkView, 'park')
+router.register(r'photos', PhotoView, 'photo')
 
 urlpatterns = [
     path('', include(router.urls)),
