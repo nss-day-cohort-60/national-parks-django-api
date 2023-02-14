@@ -16,14 +16,17 @@ Including another URLconf
 from rest_framework import routers
 from django.contrib import admin
 from django.urls import path
-from django.conf.urls import include
-from django.urls import path
-from parksapi.views import BlogView
-
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'blogs', BlogView, 'blog')
+from django.urls import include, path
+from rest_framework import routers
+from parksapi.views import ParkView, BlogView
+
+router = routers.DefaultRouter(trailing_slash=False)
+router.register(r'parks', ParkView, 'park')
 
 urlpatterns = [
+    path('', include(router.urls)),
     path('admin/', admin.site.urls),
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
