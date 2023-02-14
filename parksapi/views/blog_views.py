@@ -28,33 +28,27 @@ class BlogView(ViewSet):
 
         blogs=[]
 
-        if "park" in request.query_params:
-            blogs = Blog.objects.all()
-            if request.query_params['park']=="joshua-tree":
-                blogs = blogs.filter(park=1)
-            if request.query_params['park'] == "everglades":
-                blogs = blogs.filter(park=2)
-            if request.query_params['park'] == "great-smoky-mountains":
-                blogs = blogs.filter(park=3)
-            if request.query_params['park'] == "haleakala":
-                blogs = blogs.filter(park=4)
-            if request.query_params['park'] == "yosemite":
-                blogs = blogs.filter(park=5)
-            if request.query_params['park'] == "glacier":
-                blogs = blogs.filter(park=6)
-            if request.query_params['park'] == "kenai-fjords":
-                blogs = blogs.filter(park=7)
-            if request.query_params['park'] == "shenandoah":
-                blogs = blogs.filter(park=8)
-            if request.query_params['park'] == "saguaro":
-                blogs = blogs.filter(park=9)
-        elif "user" in request.query_params:
-            blogs = Blog.objects.filter(user=request.query_params['user'])
+        if "park_id" in request.query_params:
+            blogs = Blog.objects.filter(park=request.query_params['park_id'])
+        elif "user_id" in request.query_params:
+            blogs = Blog.objects.filter(user=request.query_params['user_id'])
         else:
             blogs = Blog.objects.all()
 
         serialized = BlogSerializer(blogs, many=True)
         return Response(serialized.data, status=status.HTTP_200_OK)
+
+    def create(self, request):
+        """Handles POST requests for blogs
+        Returns:
+            Response: JSON serialized representation of newly created blog"""
+        
+        new_blog = Blog()
+        new_blog.title = request.data['title']
+        new_blog.post_body = request.data['post_body']
+        new_blog.date_created= request.data['date_created']
+        new_blog.park = request.data['park']
+        new_blog.photo = request.data['photo']
 
 class BlogPhotoSerializer(serializers.ModelSerializer):
     """JSON serializer for blog photos"""
