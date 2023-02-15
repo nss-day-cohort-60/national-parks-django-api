@@ -8,7 +8,7 @@ from parksapi.models import Campground, CampingReservation, Park
 from parksapi.views import ParkSerializer
 
 class CampgroundView(ViewSet):
-    """campground view"""
+    """campground views"""
 
     def list(self, request):
         """Handle GET requests to get a park by id
