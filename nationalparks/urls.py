@@ -16,12 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers
-from parksapi.views import ParkView
+from parksapi.views import ParkView, login_user, register_user
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'parks', ParkView, 'park')
 
 urlpatterns = [
+    path('register', register_user),
+    path('login', login_user),
     path('', include(router.urls)),
     path('admin/', admin.site.urls),
 ]
