@@ -45,24 +45,12 @@ class PhotoView(ViewSet):
 
         Returns
             Response -- JSON serialized photo instance
-        """
-        # {
-        #     "url": "https://res.cloudinary.com/dcuwovsbv/image/upload/v1676470586/National-Parks/Park-Photos/Joshua-Tree-Weekend-Barker-Dam_wuezzl.jpg",
-        #     "park": 1
-        # }       
-
-        # park = Park.objects.get(pk=request.data["park"])
-        # user=request.auth.user
-        # serializer = CreatePhotoSerializer(data=request.data)
-        # serializer.is_valid(raise_exception=True)
-        # serializer.save(park=park, user=user)
-
-        photo = Photo.objects.create(
-            url=request.data["url"],
-            park=Park.objects.get(pk=request.data["park"]),
-            user=request.auth.user
-        )
-        serializer = PhotoSerializer(photo)
+        """      
+        serializer = CreatePhotoSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        park = Park.objects.get(pk=request.data["park"])
+        user=request.auth.user
+        serializer.save(park=park, user=user)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 class ParkPhotoSerializer(serializers.ModelSerializer):
