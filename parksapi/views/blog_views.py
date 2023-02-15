@@ -1,10 +1,11 @@
 from django.http import HttpResponseServerError
+from django.db.models import Q
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
 from parksapi.models import Blog, Photo, Park
 from django.contrib.auth.models import User
-
+from datetime import datetime
 
 class BlogView(ViewSet):
     """Parks API blogs view"""
@@ -28,12 +29,21 @@ class BlogView(ViewSet):
 
         blogs=[]
 
-        if "park_id" in request.query_params:
-            blogs = Blog.objects.filter(park=request.query_params['park_id'])
+        if "key_word" in request.query_params:
+            if "park_id" in request.query_params:
+                blogs = Blog.objects.filter(
+                    Q(park=request.query_params['park_id']),
+                    Q(title__contains=request.query_params['key_word']) 
+                    | Q(post_body__contains=request.query_params['key_word'])).order_by('-date_created')
+            else:
+                blogs = Blog.objects.filter(Q(title__contains=request.query_params['key_word']) | Q(post_body__contains=request.query_params['key_word'])).order_by('-date_created')
+
+        elif "park_id" in request.query_params:
+            blogs = Blog.objects.filter(park=request.query_params['park_id']).order_by('-date_created')
         elif "user_id" in request.query_params:
-            blogs = Blog.objects.filter(user=request.query_params['user_id'])
+            blogs = Blog.objects.filter(user=request.query_params['user_id']).order_by('-date_created')
         else:
-            blogs = Blog.objects.all()
+            blogs = Blog.objects.all().order_by('-date_created')
 
         serialized = BlogSerializer(blogs, many=True)
         return Response(serialized.data, status=status.HTTP_200_OK)
@@ -42,13 +52,16 @@ class BlogView(ViewSet):
         """Handles POST requests for blogs
         Returns:
             Response: JSON serialized representation of newly created blog"""
-        
+
         new_blog = Blog()
         new_blog.title = request.data['title']
         new_blog.post_body = request.data['post_body']
-        new_blog.date_created= request.data['date_created']
-        new_blog.park = Park.objects.get(pk=request.data['park'])
-        new_blog.photo = Photo.objects.get(pk=request.data['photo'])
+        new_blog.date_created= datetime.now().strftime('%Y-%m-%d %H:%M')
+        new_blog.park = Park.objects.get(pk=request.data['park_id'])
+        try:
+            new_blog.photo = Photo.objects.get(url=request.data['photo_url'])
+        except Photo.DoesNotExist:
+            pass
         new_blog.user = request.auth.user
         new_blog.save()
 
@@ -66,8 +79,11 @@ class BlogView(ViewSet):
         edit_blog = Blog.objects.get(pk=pk)
         edit_blog.title = request.data['title']
         edit_blog.post_body = request.data['post_body']
-        edit_blog.park = Park.objects.get(pk=request.data['park'])
-        edit_blog.photo = Photo.objects.get(pk=request.data['photo'])
+        edit_blog.park = Park.objects.get(pk=request.data['park']['id'])
+        try:
+            edit_blog.photo = Photo.objects.get(pk=request.data['photo'])
+        except Photo.DoesNotExist:
+            pass
         edit_blog.save()
         
         return Response(None, status=status.HTTP_204_NO_CONTENT)
