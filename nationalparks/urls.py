@@ -16,13 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers
-from parksapi.views import ParkView, BlogView, WildlifeView, login_user, register_user, PhotoView
+from parksapi.views import ParkView, BlogView, WildlifeView, login_user, register_user, PhotoView, AmenityView
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'parks', ParkView, 'park')
 router.register(r'blogs', BlogView, 'blog')
 router.register(r'wildlife', WildlifeView, 'wildlife')
 router.register(r'photos', PhotoView, 'photo')
+router.register(r'amenities', AmenityView, 'amenity')
 
 urlpatterns = [
     path('register', register_user),
