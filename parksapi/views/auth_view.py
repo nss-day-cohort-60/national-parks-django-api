@@ -66,6 +66,7 @@ def register_user(request):
     except User.DoesNotExist:
 
         new_user = User.objects.create_user(
+            is_staff=request.data['isRanger'],
             username=request.data['email'],
             password=request.data['password'],
             email=request.data['email'],
@@ -79,8 +80,8 @@ def register_user(request):
         # this is where we update what gets sent back to the client for localStorage
         data = {
             'id': new_user.id,
-            'name': new_user.first_name,
-            'staff': new_user.is_staff,
+            'first_name': new_user.first_name,
+            'is_staff': new_user.is_staff,
             'token': token.key
             }
     return Response(data)
