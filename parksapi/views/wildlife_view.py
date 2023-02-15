@@ -25,10 +25,9 @@ class WildlifeView(ViewSet):
             serializer = ParkWildlifeSerializer(filtered, many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)
     
-        else:
-            all_wildlife = Wildlife.objects.all()
-            serializer = WildlifeSerializer(all_wildlife, many=True)
-            return Response(serializer.data, status=status.HTTP_200_OK)
+        all_wildlife = Wildlife.objects.all()
+        serializer = WildlifeSerializer(all_wildlife, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def retrieve(self, request, pk):
         """Handle GET requests for single wildlife
