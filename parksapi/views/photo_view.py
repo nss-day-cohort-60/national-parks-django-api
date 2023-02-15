@@ -1,6 +1,7 @@
 """View module for handling requests about game types"""
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
+from django.contrib.auth.models import User
 from rest_framework import serializers, status
 from parksapi.models import Photo, Park
 
@@ -14,9 +15,12 @@ class PhotoView(ViewSet):
             Response -- JSON serialized photo
         """
 
-        photo = Photo.objects.get(pk=pk)
-        serializer = PhotoSerializer(photo)
-        return Response(serializer.data)
+        try: 
+            photo = Photo.objects.get(pk=pk)
+            serializer = PhotoSerializer(photo)
+            return Response(serializer.data)
+        except Photo.DoesNotExist as ex: 
+            return Response({'message:': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
 
     def list(self, request):
         """Handle GET requests to get all photos
@@ -42,23 +46,37 @@ class PhotoView(ViewSet):
         Returns
             Response -- JSON serialized photo instance
         """
+        # {
+        #     "url": "https://res.cloudinary.com/dcuwovsbv/image/upload/v1676470586/National-Parks/Park-Photos/Joshua-Tree-Weekend-Barker-Dam_wuezzl.jpg",
+        #     "park": 1
+        # }       
 
-        # url, park, and user
+        # park = Park.objects.get(pk=request.data["park"])
+        # user=request.auth.user
+        # serializer = CreatePhotoSerializer(data=request.data)
+        # serializer.is_valid(raise_exception=True)
+        # serializer.save(park=park, user=user)
 
         photo = Photo.objects.create(
             url=request.data["url"],
-            park=Park.objects.get(pk=request.data["park_id"]),
+            park=Park.objects.get(pk=request.data["park"]),
             user=request.auth.user
         )
-
         serializer = PhotoSerializer(photo)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
-
 
 class ParkPhotoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Park
         fields = ['id', 'name', ] 
+
+class CreatePhotoSerializer(serializers.ModelSerializer):
+    """JSON serializer for creating a photo
+    """
+
+    class Meta:
+        model = Photo
+        fields = ('url', 'park')
 
 class PhotoSerializer(serializers.ModelSerializer):
     """JSON serializer for photos
