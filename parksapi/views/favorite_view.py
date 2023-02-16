@@ -56,13 +56,28 @@ class FavoriteView(ViewSet):
         """Handles POST requests for favorites
         Returns:
             Response: JSON serialized representation of newly created favorite"""
-
-        # new_favorite = Favorite()
-        # new_favorite.user = request.auth.user
-        # new_favorite.save()
-
-        # serialized = FavoriteSerializer(new_favorite, many=False)
-
+        try:
+            user = request.auth.user
+            if "park_id" in request.data:
+                favorite = ParkFavorite()
+                favorite.park_id = request.data['park_id']
+                serialized = ParkFavoriteSerializer(favorite)
+            elif "blog_id" in request.data:
+                favorite = BlogFavorite()
+                favorite.post_id = request.data['blog_id']
+                serialized = BlogFavoriteSerializer(favorite)
+            elif "event_id" in request.data:
+                favorite = EventFavorite()
+                favorite.event_id = request.data['event_id']
+                serialized = EventFavoriteSerializer(favorite)
+            elif "photo_id" in request.data:
+                favorite = PhotoFavorite()
+                favorite.photo_id = request.data['photo_id']
+                serialized = PhotoFavoriteSerializer(favorite)
+        except ObjectDoesNotExist:
+            return Response({'valid': False}, status=status.HTTP_404_NOT_FOUND)
+        favorite.user = user
+        favorite.save()
         return Response(serialized.data, status=status.HTTP_201_CREATED)
 
     def destroy(self, request, pk=None):
