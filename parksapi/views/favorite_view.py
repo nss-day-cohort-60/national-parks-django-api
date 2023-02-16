@@ -1,6 +1,7 @@
 from django.http import HttpResponseServerError
 from django.db.models import Q
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.utils import IntegrityError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
@@ -25,7 +26,7 @@ class FavoriteView(ViewSet):
         try:
             user = request.auth.user
             if "park_id" in request.query_params:
-                favorite = ParkFavorite.objects.get(park_id=request.query_params['park_id'],user=user) 
+                favorite = ParkFavorite.objects.get(park_id=request.query_params['park_id'], user=user) 
                 serialized = ParkFavoriteSerializer(favorite)
             elif "blog_id" in request.query_params:
                 favorite = BlogFavorite.objects.get(post_id=request.query_params['blog_id'], user=user )
@@ -74,10 +75,10 @@ class FavoriteView(ViewSet):
                 favorite = PhotoFavorite()
                 favorite.photo_id = request.data['photo_id']
                 serialized = PhotoFavoriteSerializer(favorite)
-        except ObjectDoesNotExist:
+            favorite.user = user
+            favorite.save()
+        except IntegrityError:
             return Response({'valid': False}, status=status.HTTP_404_NOT_FOUND)
-        favorite.user = user
-        favorite.save()
         return Response(serialized.data, status=status.HTTP_201_CREATED)
 
     def destroy(self, request, pk=None):
@@ -86,8 +87,21 @@ class FavoriteView(ViewSet):
         Returns:
             Response: None with 204 status code
         """
-        # delete_favorite = Favorite.objects.get(pk=pk)
-        # delete_favorite.delete()
+        try:
+            user = request.auth.user
+            if "park_id" in request.data:
+                favorite = ParkFavorite.objects.get(park_id=request.data['park_id'], user=user)
+            elif "blog_id" in request.data:
+                favorite = BlogFavorite.objects.get(post_id=request.data['blog_id'], user=user)
+            elif "event_id" in request.data:
+                favorite = EventFavorite.objects.get(event_id=request.data['event_id'], user=user)
+            elif "photo_id" in request.data:
+                favorite = PhotoFavorite.objects.get(photo_id=request.data['photo_id'], user=user)
+            else:
+                return Response({'valid': False}, status=status.HTTP_404_NOT_FOUND)
+            favorite.delete()
+        except (IntegrityError, ObjectDoesNotExist):
+            return Response({'valid': False}, status=status.HTTP_404_NOT_FOUND)
         return Response(None, status=status.HTTP_204_NO_CONTENT)
 
 class PhotoFavoriteSerializer(serializers.ModelSerializer):

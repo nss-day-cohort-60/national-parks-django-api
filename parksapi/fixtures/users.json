@@ -3,7 +3,7 @@
         "model": "auth.user",
         "pk": 1,
         "fields": {
-            "password": "pbkdf2_sha256$216000$6DvfW8IvGfm7$YObrlCpA+mkWbNsfw+sqr1/4k+Wh3qgN9XvBh/Ge+oA=",
+            "password": "pbkdf2_sha256$390000$cK4nlKiHnAvicY4AbcURS6$JWanvidq9mu9yxJFn48JTjiEj59wAdVE0xvLtTCAhzs=",
             "last_login": null,
             "is_superuser": false,
             "username": "Frodo",
@@ -19,7 +19,7 @@
         "model": "auth.user",
         "pk": 2,
         "fields": {
-            "password": "pbkdf2_sha256$216000$seMRODEfzPmZ$JbZhIV1XmJRn7V0WfEa+Sa7eJ6Oyvj0ss/FW0XvD+zo=",
+            "password": "pbkdf2_sha256$390000$cK4nlKiHnAvicY4AbcURS6$JWanvidq9mu9yxJFn48JTjiEj59wAdVE0xvLtTCAhzs=zo=",
             "last_login": null,
             "is_superuser": false,
             "username": "Bilbo",
@@ -35,7 +35,7 @@
         "model": "auth.user",
         "pk": 3,
         "fields": {
-            "password": "pbkdf2_sha256$216000$quGyt8uVhJkp$+5u9X5F5WxuPQ5O24zNf7VHdMtbuUG7GmZ+5u5Xnc/4=",
+            "password": "pbkdf2_sha256$390000$cK4nlKiHnAvicY4AbcURS6$JWanvidq9mu9yxJFn48JTjiEj59wAdVE0xvLtTCAhzs=5u5Xnc/4=",
             "last_login": null,
             "is_superuser": false,
             "username": "Thorin",
@@ -51,7 +51,7 @@
         "model": "auth.user",
         "pk": 4,
         "fields": {
-            "password": "pbkdf2_sha256$216000$rdUW8bUfZ6zq$GJpT6xWn+bfCGBMP+hE2b9XHJzzW8ziVZJzYQR+Pev0=",
+            "password": "pbkdf2_sha256$390000$cK4nlKiHnAvicY4AbcURS6$JWanvidq9mu9yxJFn48JTjiEj59wAdVE0xvLtTCAhzs=Pev0=",
             "last_login": null,
             "is_superuser": false,
             "username": "Aragorn",
@@ -67,7 +67,7 @@
         "model": "auth.user",
         "pk": 5,
         "fields": {
-            "password": "pbkdf2_sha256$216000$HvzDcZew8OZg$X9lcnm/a1EVTc8xGmUnQjKm0A6ZbKsNYsPUVQ2X9uFA=",
+            "password": "pbkdf2_sha256$390000$cK4nlKiHnAvicY4AbcURS6$JWanvidq9mu9yxJFn48JTjiEj59wAdVE0xvLtTCAhzs=",
             "last_login": null,
             "is_superuser": false,
             "username": "Gandalf",
@@ -83,7 +83,7 @@
         "model": "auth.user",
         "pk": 6,
         "fields": {
-            "password": "pbkdf2_sha256$216000$qxDR+pg2wKjI$B5QZG5i5jKf5YXr78vC3qBpawtBfKjKLl+szIMrFGOg=",
+            "password": "pbkdf2_sha256$390000$cK4nlKiHnAvicY4AbcURS6$JWanvidq9mu9yxJFn48JTjiEj59wAdVE0xvLtTCAhzs=szIMrFGOg=",
             "last_login": null,
             "is_superuser": false,
             "username": "Legolas",
@@ -99,7 +99,7 @@
         "model": "auth.user",
         "pk": 7,
         "fields": {
-            "password": "pbkdf2_sha256$216000$x4Th4wRjKZ99$Ap6kh5UQY5/NKj5FXTdX3PbCv6kOcOJdHlkK56/x7nc=",
+            "password": "pbkdf2_sha256$390000$cK4nlKiHnAvicY4AbcURS6$JWanvidq9mu9yxJFn48JTjiEj59wAdVE0xvLtTCAhzs=x7nc=",
             "last_login": null,
             "is_superuser": false,
             "username": "Gimli",
@@ -115,7 +115,7 @@
         "model": "auth.user",
         "pk": 8,
         "fields": {
-            "password": "pbkdf2_sha256$216000$sgXyJg+53DjC$b2QgDekwq3FqNp18GnW8ATRyaRg9f1wdvSmnTfW1TtE=",
+            "password": "pbkdf2_sha256$390000$cK4nlKiHnAvicY4AbcURS6$JWanvidq9mu9yxJFn48JTjiEj59wAdVE0xvLtTCAhzs=",
             "last_login": null,
             "is_superuser": false,
             "username": "Eowyn",
@@ -131,7 +131,7 @@
         "model": "auth.user",
         "pk": 9,
         "fields": {
-            "password": "pbkdf2_sha256$216000$VssdCtBzSRV7$qo8bqWV1vHgM84/WR51xsz8y2WVhbmMkjP76gLMrGz8=",
+            "password": "pbkdf2_sha256$390000$cK4nlKiHnAvicY4AbcURS6$JWanvidq9mu9yxJFn48JTjiEj59wAdVE0xvLtTCAhzs=",
             "last_login": null,
             "is_superuser": false,
             "username": "GandalftheGreat",
@@ -147,7 +147,7 @@
         "model": "auth.user",
         "pk": 10,
         "fields": {
-            "password": "pbkdf2_sha256$216000$KnGxLMtnoW8M$57jK2SWtQzHw7qW8bYjV7H9L/hnLc51jQnNWvEyySOo=",
+            "password": "pbkdf2_sha256$390000$cK4nlKiHnAvicY4AbcURS6$JWanvidq9mu9yxJFn48JTjiEj59wAdVE0xvLtTCAhzs=",
             "last_login": null,
             "is_superuser": false,
             "username": "LegolastheGreat",
@@ -163,7 +163,7 @@
         "model": "auth.user",
         "pk": 11,
         "fields": {
-            "password": "pbkdf2_sha256$216000$u0dDpX7rPFDv$5V7jK2Mk+fwox/Hc+Wt8LCCgmzFZ9GX2vrHATY1Klqw=",
+            "password": "pbkdf2_sha256$390000$cK4nlKiHnAvicY4AbcURS6$JWanvidq9mu9yxJFn48JTjiEj59wAdVE0xvLtTCAhzs=",
             "last_login": null,
             "is_superuser": true,
             "username": "SmokyBear",
