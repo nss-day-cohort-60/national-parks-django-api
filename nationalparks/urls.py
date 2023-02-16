@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers
-from parksapi.views import ParkView, BlogView, WildlifeView, login_user, register_user, PhotoView, NaturalAttractionView, CampgroundView, EventView, AmenityView
+from parksapi.views import ParkView, BlogView, WildlifeView, login_user, register_user, PhotoView, NaturalAttractionView, CampgroundView, EventView, AmenityView, FavoriteView
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'parks', ParkView, 'park')
@@ -26,7 +26,8 @@ router.register(r'photos', PhotoView, 'photo')
 router.register(r'natural_attractions', NaturalAttractionView, 'natural_attraction')
 router.register(r'campgrounds',CampgroundView, 'campgrounds')
 router.register(r'events', EventView, 'events')
-router.register(r'amenities', AmenityView, 'amenities')
+router.register(r'amenities', AmenityView, 'amenity')
+router.register(r'favorites', FavoriteView, 'favorite')
 
 
 urlpatterns = [
