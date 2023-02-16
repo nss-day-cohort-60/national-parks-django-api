@@ -62,6 +62,7 @@ class EventView(ViewSet):
         edit_event = Event.objects.get(pk=pk)
         edit_event.name = request.data['name']
         edit_event.description = request.data['description']
+        edit_event.start_date= request.data['start_date']
         edit_event.park = Park.objects.get(pk=request.data['park'])
         edit_event.save()
         
