@@ -28,7 +28,7 @@ class ParkView(ViewSet):
             return Response({"reason": ex.message}, status=status.HTTP_400_BAD_REQUEST)
 
     def list(self, request, park_id=None):
-        """Handle GET requests to get a park by id
+        """Handle GET requests to get a park by id or all parks
 
         Returns:
             Response -- JSON serialized park 
