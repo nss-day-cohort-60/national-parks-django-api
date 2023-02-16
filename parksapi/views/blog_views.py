@@ -59,6 +59,7 @@ class BlogView(ViewSet):
         new_blog.date_created= datetime.now().strftime('%Y-%m-%d %H:%M')
         new_blog.park = Park.objects.get(pk=request.data['park_id'])
         try:
+            # to fully support photo add, need cloudinary upload attempt here
             new_blog.photo = Photo.objects.get(url=request.data['photo_url'])
         except Photo.DoesNotExist:
             pass

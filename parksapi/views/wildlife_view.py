@@ -19,10 +19,11 @@ class WildlifeView(ViewSet):
                 park_wildlife = ParkWildlife.objects.all()
                 filtered = park_wildlife.filter(
                     park_id=request.query_params.get('park_id'))
+                filtered = [x.wildlife for x in filtered]
                 assert len(filtered) > 0
             except AssertionError:
                 return Response({'message': 'Invalid park id'}, status=status.HTTP_404_NOT_FOUND)
-            serializer = ParkWildlifeSerializer(filtered, many=True)
+            serializer = WildlifeSerializer(filtered, many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)
     
         all_wildlife = Wildlife.objects.all()
@@ -97,10 +98,3 @@ class WildlifeSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'information', 'wildlife_group', 'image')
 
 
-class ParkWildlifeSerializer(serializers.ModelSerializer):
-    """JSON serializer for parkwildlife
-    """
-    class Meta:
-        model = ParkWildlife
-        fields = ('wildlife',)
-        depth=1
