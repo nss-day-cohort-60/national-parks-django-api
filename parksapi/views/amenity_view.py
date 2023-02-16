@@ -19,6 +19,7 @@ class AmenityView(ViewSet):
                 park_amenity = ParkAmenity.objects.all()
                 filtered = park_amenity.filter(
                     park_id=request.query_params.get('park_id'))
+                # filtered = [x.amenity for x in filtered]
                 assert len(filtered) > 0
             except AssertionError:
                 return Response({'message': 'Invalid park id'}, status=status.HTTP_404_NOT_FOUND)
@@ -56,5 +57,6 @@ class ParkAmenitySerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = ParkAmenity
-        fields = ('name', 'amenity','park')
+        fields = ('name', 'amenity')
+        depth=1
       
