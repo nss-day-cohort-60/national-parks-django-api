@@ -11,21 +11,22 @@ Class-based views
     2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
 Including another URLconf
     1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))s
 """
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers
-from parksapi.views import ParkView, BlogView, WildlifeView, login_user, register_user, PhotoView, NaturalAttractionView, AmenityView
+from parksapi.views import ParkView, BlogView, WildlifeView, login_user, register_user, PhotoView, NaturalAttractionView, CampgroundView, EventView
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'parks', ParkView, 'park')
 router.register(r'blogs', BlogView, 'blog')
 router.register(r'wildlife', WildlifeView, 'wildlife')
 router.register(r'photos', PhotoView, 'photo')
-router.register(r'natural_attractions', NaturalAttractionView, 'natural_attraction')
-router.register(r'amenities', AmenityView, 'amenity')
-
+router.register(r'events', EventView, 'event')
+router.register(r'natural_attractions',
+                NaturalAttractionView, 'natural_attraction')
+router.register(r'campgrounds', CampgroundView, 'campground')
 
 urlpatterns = [
     path('register', register_user),
