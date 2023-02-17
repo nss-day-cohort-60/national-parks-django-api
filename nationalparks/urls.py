@@ -29,7 +29,6 @@ router.register(r'events', EventView, 'events')
 router.register(r'amenities', AmenityView, 'amenity')
 router.register(r'favorites', FavoriteView, 'favorite')
 
-
 urlpatterns = [
     path('register', register_user),
     path('login', login_user),
