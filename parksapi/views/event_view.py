@@ -2,7 +2,7 @@ from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
-from parksapi.models import Event, Park
+from parksapi.models import Event, Park, EventType
 from django.contrib.auth.models import User
 
 
@@ -45,6 +45,8 @@ class EventView(ViewSet):
         new_event.name = request.data['name']
         new_event.description = request.data['description']
         new_event.start_date= request.data['start_date']
+        new_event.end_date = request.data['end_date']
+        new_event.event_type = EventType.objects.get(pk=request.data['event_type'])
         new_event.park = Park.objects.get(pk=request.data['park'])
         new_event.save()
 
@@ -63,6 +65,7 @@ class EventView(ViewSet):
         edit_event.name = request.data['name']
         edit_event.description = request.data['description']
         edit_event.start_date= request.data['start_date']
+        edit_event.event_type = EventType.objects.get(pk=request.data['event_type'])
         edit_event.park = Park.objects.get(pk=request.data['park'])
         edit_event.save()
         
@@ -77,7 +80,10 @@ class EventView(ViewSet):
         delete_event = Event.objects.get(pk=pk)
         delete_event.delete()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
-
+class EventTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EventType
+        fields = ('id', 'type')
 class EventParkSerializer(serializers.ModelSerializer):
     """JSON serializer for blog parks"""
     class Meta:
@@ -87,8 +93,8 @@ class EventParkSerializer(serializers.ModelSerializer):
 class EventSerializer(serializers.ModelSerializer):
     """JSON serializer for songs"""
     park = EventParkSerializer(many=False)
-
+    event_type = EventTypeSerializer
     class Meta:
         model = Event
-        fields = ('id', 'name', 'description', 'start_date', 'park')
+        fields = ('id', 'name', 'description', 'start_date', 'end_date', 'event_type', 'park')
         depth = 1
