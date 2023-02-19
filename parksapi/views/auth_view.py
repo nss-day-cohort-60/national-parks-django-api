@@ -15,11 +15,18 @@ def login_user(request):
         request -- The full HTTP request object
     '''
     email = request.data['email']
+
+
     # comment out this block after 1st login with any user. 
     # It takes a couple seconds to run and doesn't do anything after the 1st execution
     # the first time it does run, it changes all users in your database so the username and email are the same and everyone's password will be gandalfsucks12.
     # later we can upgrade the client to accept and send a password, but for now the password is hardcoded into the authenticate call.
-
+    all_users = User.objects.all()
+    for user in all_users:
+        password = make_password('gandalfsucks12')
+        user.password = password
+        user.username = user.email
+        user.save()
     # Use the built-in authenticate method to verify
     # authenticate returns the user object or None if no user is found
     authenticated_user = authenticate(username=email, password='gandalfsucks12')

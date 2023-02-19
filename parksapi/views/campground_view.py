@@ -57,4 +57,4 @@ class NaturalAttractionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Campground
-        fields = ('id', 'name', 'park', 'available_sites', 'description')
+        fields = ('id', 'name', 'park', 'available_sites', 'description', 'image')
