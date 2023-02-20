@@ -82,7 +82,7 @@ class BlogView(ViewSet):
         edit_blog.post_body = request.data['post_body']
         edit_blog.park = Park.objects.get(pk=request.data['park']['id'])
         try:
-            edit_blog.photo = Photo.objects.get(pk=request.data['photo'])
+            edit_blog.photo = Photo.objects.get(pk=request.data['photo']['id'])
         except Photo.DoesNotExist:
             pass
         edit_blog.save()
