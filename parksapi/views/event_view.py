@@ -2,7 +2,7 @@ from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
-from parksapi.models import Event, Park, EventType
+from parksapi.models import Event, Park, EventType, EventRegistration
 from django.contrib.auth.models import User
 
 
@@ -40,19 +40,26 @@ class EventView(ViewSet):
         """Handles POST requests for blogs
         Returns:
             Response: JSON serialized representation of newly created blog"""
-        
-        new_event = Event()
-        new_event.name = request.data['name']
-        new_event.description = request.data['description']
-        new_event.start_date= request.data['start_date']
-        new_event.end_date = request.data['end_date']
-        new_event.event_type = EventType.objects.get(pk=request.data['event_type'])
-        new_event.park = Park.objects.get(pk=request.data['park'])
-        new_event.save()
+        if "register" in request.data:
+            new_registration = EventRegistration()
+            new_registration.user = request.auth.user
+            new_registration.event = Event.objects.get(pk=request.data['id'])
+            new_registration.save()
+            serialized = EventRegistrationSerializer(new_registration)
+            return Response(serialized.data, status=status.HTTP_201_CREATED)
+        else:
+            new_event = Event()
+            new_event.name = request.data['name']
+            new_event.description = request.data['description']
+            new_event.start_date= request.data['start_date']
+            new_event.end_date = request.data['end_date']
+            new_event.event_type = EventType.objects.get(pk=request.data['event_type'])
+            new_event.park = Park.objects.get(pk=request.data['park'])
+            new_event.save()
 
-        serialized = EventSerializer(new_event, many=False)
+            serialized = EventSerializer(new_event, many=False)
 
-        return Response(serialized.data, status=status.HTTP_201_CREATED)
+            return Response(serialized.data, status=status.HTTP_201_CREATED)
 
     def update(self, request, pk=None):
         """Handle PUT requests for blogs
@@ -80,6 +87,12 @@ class EventView(ViewSet):
         delete_event = Event.objects.get(pk=pk)
         delete_event.delete()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
+
+class EventRegistrationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EventRegistration
+        fields = ('id', 'user', 'event')
+
 class EventTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = EventType
