@@ -1,0 +1,45 @@
+[
+    {
+      "model": "parksapi.EventType",
+      "pk": 1,
+      "fields": {
+        "type": "Group Hikes"
+      }
+    },
+    {
+      "model": "parksapi.EventType",
+      "pk": 2,
+      "fields": {
+        "type": "Park Science"
+      }
+    },
+    {
+      "model": "parksapi.EventType",
+      "pk": 3,
+      "fields": {
+        "type": "Park History"
+      }
+    },
+    {
+      "model": "parksapi.EventType",
+      "pk": 4,
+      "fields": {
+        "type": "Holidays Event"
+      }
+    },
+    {
+        "model": "parksapi.EventType",
+        "pk": 5,
+        "fields": {
+          "type": "Movement"
+        }
+      },
+      {
+        "model": "parksapi.EventType",
+        "pk": 6,
+        "fields": {
+          "type": "Ranger Events"
+        }
+      }
+  ]
+  

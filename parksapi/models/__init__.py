@@ -16,3 +16,4 @@ from .amenity import Amenity
 from .park_amenity import ParkAmenity
 from .wildlife import Wildlife
 from .wildlife_group import WildlifeGroup
+from .event_type import EventType
