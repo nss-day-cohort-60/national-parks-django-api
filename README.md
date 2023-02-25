@@ -26,7 +26,7 @@ We were given leeway to develop our own project management and ticketing strateg
 
 National Parks is a responsive web application intended to allow park visitors to have one place with all the resources and information about US national parks.
 Users should be able to view and/or interact with a variety of park information and create and view public blog posts.
-The front end is coded with React18 and ES6, styled with Bootstrap and CSS.
+The back end is coded with Python, Django and utilizes a SQLite database.
 
 ## Feature Highlights
 
