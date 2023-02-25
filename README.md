@@ -36,39 +36,25 @@ The front end is coded with React18 and ES6, styled with Bootstrap and CSS.
 #### View details about specific parks like location, history, wildlife and amenities:
 
 
-#### View, create and favorite blogs about each park:
-
-
-#### Update and delete personally created blogs:
-
-
-#### View, add, favorite and register for park events:
-##### (Staff can modify and delete events)
-
-
-#### View all favorites on one page:
-
-
-#### Responsive design:
 
 
 ## Installation
 Follow the steps below to download and run this project on your computer
-- [ ] Server is required for full functionality. [View server repo here](https://github.com/nss-day-cohort-60/national-parks-django-api)
+- [ ] Client is required for full functionality. [View client repo here](https://github.com/nss-day-cohort-60/national-parks-client-v2)
 - [ ] Clone this repo
-- [ ] From repo directory, run "npm install react"
-- [ ] Run something about leaflet and another thing and bootstrap maybe
-- [ ] Run "npm start"
+- [ ] From repo directory, run "npm pipenv install"
+- [ ] Run some other things to install requireds
+- [ ] Run "python manage.py runserver"
 
 
 ## Tech Stack
 
-![Bootstrap](https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
-![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![Django](https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white)
+![DjangoREST](https://img.shields.io/badge/DJANGO-REST-ff1709?style=for-the-badge&logo=django&logoColor=white&color=ff1709&labelColor=gray)
 ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
-![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
-![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
-![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white)
 ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
 
 ## Credits & Acknowledgements
@@ -89,6 +75,7 @@ Follow the steps below to download and run this project on your computer
 * Favorite View
 * Contributed to refactoring SQL insert statements to seed database
 * Blog view add, search, edit functions
+* README.md
 
 
 ### Maia Dutta
