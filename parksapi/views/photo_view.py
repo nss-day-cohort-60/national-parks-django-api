@@ -4,6 +4,13 @@ from rest_framework.response import Response
 from django.contrib.auth.models import User
 from rest_framework import serializers, status
 from parksapi.models import Photo, Park
+# imports below here for photo migration from cloudinary
+from django.core.files.base import ContentFile
+from django.core.files import File
+from urllib.request import urlopen
+from io import BytesIO
+from PIL import Image
+import os
 
 class PhotoView(ViewSet):
     """National Parks API photo view"""
@@ -28,17 +35,28 @@ class PhotoView(ViewSet):
         Returns:
             Response -- JSON serialized list of photos
         """
+        # temporary file migration from cloudinary on photo fetch
+        photo_list = Photo.objects.all()
 
+        for photo in photo_list:
+            if not photo.image:
+                try:
+                    response = urlopen(photo.url)
+                    image_data = response.read()
+                    image = Image.open(BytesIO(image_data))
+                    photo.image.save(os.path.basename(photo.url), content=ContentFile(image_data), save=True)
+                except:
+                    pass
         photos = Photo.objects.all()
-        
-        if "park_id" in request.query_params:
-            photos = photos.filter(park=request.query_params['park_id'])
+        # temporary override normal fetch for file migration from cloudinary on photo fetch
+        # if "park_id" in request.query_params:
+        #     photos = photos.filter(park=request.query_params['park_id'])
 
-            if "user_id" in request.query_params:    
-                photos = photos.filter(user=request.query_params['user_id'])
+        #     if "user_id" in request.query_params:    
+        #         photos = photos.filter(user=request.query_params['user_id'])
 
-        serializer = PhotoSerializer(photos, many=True)
-        return Response(serializer.data)
+        # serializer = PhotoSerializer(photos, many=True)
+        # return Response(serializer.data)
 
     def create(self, request):
         """Handle POST operations
