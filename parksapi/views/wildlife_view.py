@@ -21,34 +21,34 @@ class WildlifeView(ViewSet):
             Response -- JSON serialized list of wildlife
         """
         # temporary file migration from cloudinary on wildlife fetch
-        wildlife_list = Wildlife.objects.all()
+        # wildlife_list = Wildlife.objects.all()
 
-        for wildlife in wildlife_list:
-            if not wildlife.image:
-                try:
-                    response = urlopen(wildlife.url)
-                    image_data = response.read()
-                    image = Image.open(BytesIO(image_data))
-                    wildlife.image.save(os.path.basename(wildlife.url), content=ContentFile(image_data), save=True)
-                except:
-                    pass
+        # for wildlife in wildlife_list:
+        #     if not wildlife.image:
+        #         try:
+        #             response = urlopen(wildlife.url)
+        #             image_data = response.read()
+        #             image = Image.open(BytesIO(image_data))
+        #             wildlife.image.save(os.path.basename(wildlife.url), content=ContentFile(image_data), save=True)
+        #         except:
+        #             pass
         # temporarily override normal fetch for file migration from cloudinary on wildlife fetch
 
-        # if "park_id" in request.query_params:
-        #     try:
-        #         park_wildlife = ParkWildlife.objects.all()
-        #         filtered = park_wildlife.filter(
-        #             park_id=request.query_params.get('park_id'))
-        #         filtered = [x.wildlife for x in filtered]
-        #         assert len(filtered) > 0
-        #     except AssertionError:
-        #         return Response({'message': 'Invalid park id'}, status=status.HTTP_404_NOT_FOUND)
-        #     serializer = WildlifeSerializer(filtered, many=True)
-        #     return Response(serializer.data, status=status.HTTP_200_OK)
+        if "park_id" in request.query_params:
+            try:
+                park_wildlife = ParkWildlife.objects.all()
+                filtered = park_wildlife.filter(
+                    park_id=request.query_params.get('park_id'))
+                filtered = [x.wildlife for x in filtered]
+                assert len(filtered) > 0
+            except AssertionError:
+                return Response({'message': 'Invalid park id'}, status=status.HTTP_404_NOT_FOUND)
+            serializer = WildlifeSerializer(filtered, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
     
-        # all_wildlife = Wildlife.objects.all()
-        # serializer = WildlifeSerializer(all_wildlife, many=True)
-        # return Response(serializer.data, status=status.HTTP_200_OK)
+        all_wildlife = Wildlife.objects.all()
+        serializer = WildlifeSerializer(all_wildlife, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def retrieve(self, request, pk):
         """Handle GET requests for single wildlife
