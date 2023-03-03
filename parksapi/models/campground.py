@@ -7,3 +7,4 @@ class Campground(models.Model):
     available_sites = models.IntegerField()
     description = models.CharField(max_length=255)
     image = models.CharField(max_length=5000)
+    

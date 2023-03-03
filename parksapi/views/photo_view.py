@@ -36,27 +36,28 @@ class PhotoView(ViewSet):
             Response -- JSON serialized list of photos
         """
         # temporary file migration from cloudinary on photo fetch
-        photo_list = Photo.objects.all()
+        # photo_list = Photo.objects.all()
 
-        for photo in photo_list:
-            if not photo.image:
-                try:
-                    response = urlopen(photo.url)
-                    image_data = response.read()
-                    image = Image.open(BytesIO(image_data))
-                    photo.image.save(os.path.basename(photo.url), content=ContentFile(image_data), save=True)
-                except:
-                    pass
+        # for photo in photo_list:
+        #     if not photo.image:
+        #         try:
+        #             response = urlopen(photo.url)
+        #             image_data = response.read()
+        #             image = Image.open(BytesIO(image_data))
+        #             photo.image.save(os.path.basename(photo.url), content=ContentFile(image_data), save=True)
+        #         except:
+        #             pass
+        # temporarily override normal fetch for file migration from cloudinary on photo fetch
+        
         photos = Photo.objects.all()
-        # temporary override normal fetch for file migration from cloudinary on photo fetch
-        # if "park_id" in request.query_params:
-        #     photos = photos.filter(park=request.query_params['park_id'])
+        if "park_id" in request.query_params:
+            photos = photos.filter(park=request.query_params['park_id'])
 
-        #     if "user_id" in request.query_params:    
-        #         photos = photos.filter(user=request.query_params['user_id'])
+            if "user_id" in request.query_params:    
+                photos = photos.filter(user=request.query_params['user_id'])
 
-        # serializer = PhotoSerializer(photos, many=True)
-        # return Response(serializer.data)
+        serializer = PhotoSerializer(photos, many=True)
+        return Response(serializer.data)
 
     def create(self, request):
         """Handle POST operations
@@ -91,4 +92,4 @@ class PhotoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Photo
-        fields = ('id', 'url', 'park', 'user', )
+        fields = ('id', 'url', 'image', 'park', 'user', )
