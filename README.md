@@ -99,6 +99,8 @@ Follow the steps below to download and run this project on your computer
 [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/vanessaspear)
 [![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/vanessavspear)
 
-* 
-* Contributed to refactoring SQL insert statements to seed database
-* 
+- Created models for wildlife groups, park wildlife, natural attractions, park natural attractions
+- Created views for photos, events, event registration, campgrounds, and campground reservations to handle requests from the client to the server
+- Contributed to refactoring of SQL queries from client version 1 to be able to seed database without having to create fixtures in the Django REST framework
+- Created the parks list component and parks map component on the client landing page 
+- Reviewed pull requests and performed code reviews
