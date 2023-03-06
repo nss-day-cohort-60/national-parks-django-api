@@ -103,7 +103,7 @@ class BlogPhotoSerializer(serializers.ModelSerializer):
     """JSON serializer for blog photos"""
     class Meta:
         model = Photo
-        fields = ('id', 'url')
+        fields = ('id', 'image')
 
 class BlogUserSerializer(serializers.ModelSerializer):
     """JSON serializer for blog users"""
