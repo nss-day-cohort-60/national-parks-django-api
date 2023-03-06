@@ -3,7 +3,13 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
 from parksapi.models import Wildlife, ParkWildlife, WildlifeGroup
-
+# imports below here for photo migration from cloudinary
+from django.core.files.base import ContentFile
+from django.core.files import File
+from urllib.request import urlopen
+from io import BytesIO
+from PIL import Image
+import os
 
 class WildlifeView(ViewSet):
     """National Park API wildlife view"""
@@ -14,6 +20,20 @@ class WildlifeView(ViewSet):
         Returns:
             Response -- JSON serialized list of wildlife
         """
+        # temporary file migration from cloudinary on wildlife fetch
+        # wildlife_list = Wildlife.objects.all()
+
+        # for wildlife in wildlife_list:
+        #     if not wildlife.image:
+        #         try:
+        #             response = urlopen(wildlife.url)
+        #             image_data = response.read()
+        #             image = Image.open(BytesIO(image_data))
+        #             wildlife.image.save(os.path.basename(wildlife.url), content=ContentFile(image_data), save=True)
+        #         except:
+        #             pass
+        # temporarily override normal fetch for file migration from cloudinary on wildlife fetch
+
         if "park_id" in request.query_params:
             try:
                 park_wildlife = ParkWildlife.objects.all()

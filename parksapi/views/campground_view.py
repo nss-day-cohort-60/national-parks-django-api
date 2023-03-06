@@ -6,6 +6,13 @@ from rest_framework.response import Response
 from rest_framework import serializers, status
 from parksapi.models import Campground, CampingReservation, Park
 from parksapi.views import ParkSerializer
+# imports below here for photo migration from cloudinary
+from django.core.files.base import ContentFile
+from django.core.files import File
+from urllib.request import urlopen
+from io import BytesIO
+from PIL import Image
+import os
 
 class CampgroundView(ViewSet):
     """campground views"""
@@ -16,6 +23,20 @@ class CampgroundView(ViewSet):
         Returns:
             Response -- JSON serialized attraction
         """
+        # temporary file migration from cloudinary on campground fetch
+        # campground_list = Campground.objects.all()
+
+        # for campground in campground_list:
+            
+        #     try:
+        #         response = urlopen(campground.url)
+        #         image_data = response.read()
+        #         image = Image.open(BytesIO(image_data))
+        #         campground.image.save(os.path.basename(campground.url), content=ContentFile(image_data), save=True)
+        #     except:
+        #         pass
+        # temporarily override normal fetch for file migration from cloudinary on campground fetch
+
         # Get all ParkNaturalAttraction objects
         campgrounds = Campground.objects.all()
 
