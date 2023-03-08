@@ -63,9 +63,9 @@ Follow the steps below to download and run this project on your computer
 [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/segadreamgirl)
 [![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/hazelpreza)
 
-* 
-* 
-* 
+* created models for blogs, blog favorites, park favorites, event favorites, and photo favorites 
+* Created views for events and blogs
+* Participated in code reviews and reviewing pull requests
 
 
 ### John Doll
