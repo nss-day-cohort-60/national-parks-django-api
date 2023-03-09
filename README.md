@@ -82,9 +82,9 @@ Follow the steps below to download and run this project on your computer
 [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/mvdutta)
 [![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/john-m-doll)
 
-* 
-* 
-* 
+* Created models for events, event registration, campground, and camping reservation
+* Created views for wildlife and amenities
+* Reviewed pull requests and performed code reviews
 
 
 ### Shaina Couch
