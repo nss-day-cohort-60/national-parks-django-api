@@ -91,9 +91,9 @@ Follow the steps below to download and run this project on your computer
 [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/shaibird)
 [![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/shaina-couch)
 
-* 
-* 
-* 
+* Created views for campgrounds, parks and natural attractions allowing the client to only retrieve the necessary data
+* Reviewed pull requests and participated in code reviews
+* Refactored events model with data necessary for a functioning calendar
 
 ### Vanessa Spear
 [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/vanessaspear)
